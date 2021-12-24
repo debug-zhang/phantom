@@ -11,6 +11,31 @@ import org.apache.commons.lang.ArrayUtils;
  */
 public class StringUtils {
 
+    /**
+     * A String for a space character.
+     */
+    public static final String SPACE = " ";
+
+    /**
+     * The empty String {@code ""}.
+     */
+    public static final String EMPTY = "";
+
+    /**
+     * A String for linefeed LF ("\n").
+     */
+    public static final String LF = "\n";
+
+    /**
+     * A String for carriage return CR ("\r").
+     */
+    public static final String CR = "\r";
+
+    /**
+     * Represents a failed index search.
+     */
+    public static final int INDEX_NOT_FOUND = -1;
+
     public static int length(final CharSequence cs) {
         return cs == null ? 0 : cs.length();
     }
