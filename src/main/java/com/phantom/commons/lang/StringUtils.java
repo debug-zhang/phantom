@@ -11,7 +11,9 @@ import org.apache.commons.lang.ArrayUtils;
  */
 public class StringUtils {
 
-    private static final int STRING_BUILDER_SIZE = 256;
+    public static int length(final CharSequence cs) {
+        return cs == null ? 0 : cs.length();
+    }
 
     /**
      * <p>Checks if a CharSequence is empty ("") or null.</p>
@@ -29,6 +31,35 @@ public class StringUtils {
      */
     public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
+    }
+
+    /**
+     * <p>Checks if a CharSequence is empty (""), null or whitespace only.</p>
+     *
+     * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
+     *
+     * <pre>
+     * StringUtils.isBlank(null)      = true
+     * StringUtils.isBlank("")        = true
+     * StringUtils.isBlank(" ")       = true
+     * StringUtils.isBlank("str")     = false
+     * StringUtils.isBlank("  str  ") = false
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is null, empty or whitespace only
+     */
+    public static boolean isBlank(final CharSequence cs) {
+        final int strLen = length(cs);
+        if (strLen == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -119,7 +150,7 @@ public class StringUtils {
      * StringUtils.isAllEmpty("str1", "str2")   = false
      * </pre>
      *
-     * @param css  the CharSequences to check, may be null or empty
+     * @param css the CharSequences to check, may be null or empty
      * @return {@code true} if all of the CharSequences are empty or null
      */
     public static boolean isAllEmpty(final CharSequence... css) {

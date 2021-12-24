@@ -15,6 +15,18 @@ import static org.testng.Assert.assertTrue;
  */
 public class StringUtilsTest {
 
+    static final String WHITESPACE;
+
+    static {
+        final StringBuilder ws = new StringBuilder();
+        for (int i = 0; i < Character.MAX_VALUE; i++) {
+            if (Character.isWhitespace((char) i)) {
+                ws.append((char) i);
+            }
+        }
+        WHITESPACE = " ";
+    }
+
     @Test
     public void testIsEmpty() {
         assertTrue(StringUtils.isEmpty(null));
@@ -22,6 +34,15 @@ public class StringUtilsTest {
         assertFalse(StringUtils.isEmpty(" "));
         assertFalse(StringUtils.isEmpty("str"));
         assertFalse(StringUtils.isEmpty("  str  "));
+    }
+
+    @Test
+    public void testIsBlank() {
+        assertTrue(StringUtils.isBlank(null));
+        assertTrue(StringUtils.isBlank(""));
+        assertTrue(StringUtils.isBlank(WHITESPACE));
+        assertFalse(StringUtils.isBlank("str"));
+        assertFalse(StringUtils.isBlank("  str  "));
     }
 
     @Test
