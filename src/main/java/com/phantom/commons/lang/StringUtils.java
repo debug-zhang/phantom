@@ -16,15 +16,7 @@ public class StringUtils {
     }
 
     /**
-     * <p>Checks if a CharSequence is empty ("") or null.</p>
-     *
-     * <pre>
-     * StringUtils.isEmpty(null)      = true
-     * StringUtils.isEmpty("")        = true
-     * StringUtils.isEmpty(" ")       = false
-     * StringUtils.isEmpty("str")     = false
-     * StringUtils.isEmpty("  str  ") = false
-     * </pre>
+     * Checks if a CharSequence is empty ("") or null.
      *
      * @param cs the CharSequence to check, may be null
      * @return {@code true} if the CharSequence is empty or null
@@ -34,19 +26,11 @@ public class StringUtils {
     }
 
     /**
-     * <p>Checks if a CharSequence is empty (""), null or whitespace only.</p>
+     * Checks if a CharSequence is empty (""), null or whitespace only.
+     * <p>
+     * <Whitespace is defined by {@link Character#isWhitespace(char)}.
      *
-     * <p>Whitespace is defined by {@link Character#isWhitespace(char)}.</p>
-     *
-     * <pre>
-     * StringUtils.isBlank(null)      = true
-     * StringUtils.isBlank("")        = true
-     * StringUtils.isBlank(" ")       = true
-     * StringUtils.isBlank("str")     = false
-     * StringUtils.isBlank("  str  ") = false
-     * </pre>
-     *
-     * @param cs  the CharSequence to check, may be null
+     * @param cs the CharSequence to check, may be null
      * @return {@code true} if the CharSequence is null, empty or whitespace only
      */
     public static boolean isBlank(final CharSequence cs) {
@@ -63,15 +47,7 @@ public class StringUtils {
     }
 
     /**
-     * <p>Checks if a CharSequence is not empty ("") and not null.</p>
-     *
-     * <pre>
-     * StringUtils.isNotEmpty(null)      = false
-     * StringUtils.isNotEmpty("")        = false
-     * StringUtils.isNotEmpty(" ")       = true
-     * StringUtils.isNotEmpty("str")     = true
-     * StringUtils.isNotEmpty("  str  ") = true
-     * </pre>
+     * Checks if a CharSequence is not empty ("") and not null.
      *
      * @param cs the CharSequence to check, may be null
      * @return {@code true} if the CharSequence is not empty and not null
@@ -82,20 +58,7 @@ public class StringUtils {
 
 
     /**
-     * <p>Checks if any of the CharSequences are empty ("") or null.</p>
-     *
-     * <pre>
-     * StringUtils.isAnyEmpty((String) null)    = true
-     * StringUtils.isAnyEmpty((String[]) null)  = false
-     * StringUtils.isAnyEmpty(null, "str")      = true
-     * StringUtils.isAnyEmpty("", "str")        = true
-     * StringUtils.isAnyEmpty("str", "")        = true
-     * StringUtils.isAnyEmpty("  str  ", null)  = true
-     * StringUtils.isAnyEmpty(" ", "str")       = false
-     * StringUtils.isAnyEmpty("str1", "str2")   = false
-     * StringUtils.isAnyEmpty(new String[]{})   = false
-     * StringUtils.isAnyEmpty(new String[]{""}) = true
-     * </pre>
+     * Checks if any of the CharSequences are empty ("") or null.
      *
      * @param css the CharSequences to check, may be null or empty
      * @return {@code true} if any of the CharSequences are empty or null
@@ -113,20 +76,7 @@ public class StringUtils {
     }
 
     /**
-     * <p>Checks if none of the CharSequences are empty ("") or null.</p>
-     *
-     * <pre>
-     * StringUtils.isNoneEmpty((String) null)    = false
-     * StringUtils.isNoneEmpty((String[]) null)  = true
-     * StringUtils.isNoneEmpty(null, "str")      = false
-     * StringUtils.isNoneEmpty("", "str")        = false
-     * StringUtils.isNoneEmpty("str", "")        = false
-     * StringUtils.isNoneEmpty("  str  ", null)  = false
-     * StringUtils.isNoneEmpty(new String[] {})  = true
-     * StringUtils.isNoneEmpty(new String[]{""}) = false
-     * StringUtils.isNoneEmpty(" ", "str")       = true
-     * StringUtils.isNoneEmpty("str1", "str2")   = true
-     * </pre>
+     * Checks if none of the CharSequences are empty ("") or null.
      *
      * @param css the CharSequences to check, may be null or empty
      * @return {@code true} if none of the CharSequences are empty or null
@@ -136,19 +86,7 @@ public class StringUtils {
     }
 
     /**
-     * <p>Checks if all of the CharSequences are empty ("") or null.</p>
-     *
-     * <pre>
-     * StringUtils.isAllEmpty(null)             = true
-     * StringUtils.isAllEmpty(null, "")         = true
-     * StringUtils.isAllEmpty(new String[] {})  = true
-     * StringUtils.isAllEmpty(null, "str")      = false
-     * StringUtils.isAllEmpty("", "str")        = false
-     * StringUtils.isAllEmpty("str", "")        = false
-     * StringUtils.isAllEmpty("  str  ", null)  = false
-     * StringUtils.isAllEmpty(" ", "str")       = false
-     * StringUtils.isAllEmpty("str1", "str2")   = false
-     * </pre>
+     * Checks if all of the CharSequences are empty ("") or null.
      *
      * @param css the CharSequences to check, may be null or empty
      * @return {@code true} if all of the CharSequences are empty or null
