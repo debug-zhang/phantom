@@ -7,9 +7,9 @@ import org.apache.commons.lang.ArrayUtils;
 
 /**
  * @author debug-zhang
- * @version StringUtils.java v 0.1 2021年12月25日0:12 debug-zhang
+ * @version Strings.java v 0.1 2021年12月25日0:12 debug-zhang
  */
-public class StringUtils {
+public class Strings {
 
     /**
      * A String for a space character.
