@@ -1,9 +1,8 @@
 /*
  * Copyright (c) 2021-2021 All Rights Reserved.
  */
-package com.phantom.commons.liang;
+package com.phantom.commons.base;
 
-import com.phantom.commons.lang.Strings;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
@@ -27,6 +26,9 @@ public class StringsTest {
         WHITESPACE = " ";
     }
 
+    /**
+     * Test for {@link Strings#isEmpty(java.lang.CharSequence)}.
+     */
     @Test
     public void testIsEmpty() {
         assertTrue(Strings.isEmpty(null));
@@ -36,6 +38,9 @@ public class StringsTest {
         assertFalse(Strings.isEmpty("  str  "));
     }
 
+    /**
+     * Test for {@link Strings#isBlank(java.lang.CharSequence)}.
+     */
     @Test
     public void testIsBlank() {
         assertTrue(Strings.isBlank(null));
@@ -45,6 +50,9 @@ public class StringsTest {
         assertFalse(Strings.isBlank("  str  "));
     }
 
+    /**
+     * Test for {@link Strings#isNotEmpty(java.lang.CharSequence)}.
+     */
     @Test
     public void testIsNotEmpty() {
         assertFalse(Strings.isNotEmpty(null));
@@ -54,6 +62,9 @@ public class StringsTest {
         assertTrue(Strings.isNotEmpty("  str  "));
     }
 
+    /**
+     * Test for {@link Strings#isAnyEmpty(java.lang.CharSequence[])}.
+     */
     @Test
     public void testIsAnyEmpty() {
         assertTrue(Strings.isAnyEmpty((String) null));
@@ -68,6 +79,9 @@ public class StringsTest {
         assertTrue(Strings.isAnyEmpty(new String[]{""}));
     }
 
+    /**
+     * Test for {@link Strings#isNoneEmpty(java.lang.CharSequence[])}.
+     */
     @Test
     public void testIsNoneEmpty() {
         assertFalse(Strings.isNoneEmpty((String) null));
@@ -82,6 +96,9 @@ public class StringsTest {
         assertFalse(Strings.isNoneEmpty(new String[]{""}));
     }
 
+    /**
+     * Test for {@link Strings#isAllEmpty(java.lang.CharSequence[])}.
+     */
     @Test
     public void testIsAllEmpty() {
         assertTrue(Strings.isAllEmpty());

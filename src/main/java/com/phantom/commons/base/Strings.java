@@ -1,9 +1,9 @@
 /*
  * Copyright (c) 2021-2021 All Rights Reserved.
  */
-package com.phantom.commons.lang;
+package com.phantom.commons.base;
 
-import org.apache.commons.lang.ArrayUtils;
+import com.phantom.commons.collect.Arrays;
 
 /**
  * @author debug-zhang
@@ -89,7 +89,7 @@ public class Strings {
      * @return {@code true} if any of the CharSequences are empty or null
      */
     public static boolean isAnyEmpty(final CharSequence... css) {
-        if (ArrayUtils.isEmpty(css)) {
+        if (Arrays.isEmpty(css)) {
             return false;
         }
         for (final CharSequence cs : css) {
@@ -117,7 +117,7 @@ public class Strings {
      * @return {@code true} if all of the CharSequences are empty or null
      */
     public static boolean isAllEmpty(final CharSequence... css) {
-        if (ArrayUtils.isEmpty(css)) {
+        if (Arrays.isEmpty(css)) {
             return true;
         }
         for (final CharSequence cs : css) {
