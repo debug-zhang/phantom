@@ -5,10 +5,11 @@ package com.phantom.commons.base;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 /**
+ * Unit tests {@link com.phantom.commons.base.Strings}
+ *
  * @author debug-zhang
  * @version StringsTest.java v 0.1 2021年12月25日0:29 debug-zhang
  */
@@ -26,8 +27,10 @@ public class StringsTest {
         WHITESPACE = " ";
     }
 
+    /******************** Empty/Blank methods ********************/
+
     /**
-     * Test for {@link Strings#isEmpty(java.lang.CharSequence)}.
+     * Test for {@link Strings#isEmpty(CharSequence)}.
      */
     @Test
     public void testIsEmpty() {
@@ -39,7 +42,7 @@ public class StringsTest {
     }
 
     /**
-     * Test for {@link Strings#isBlank(java.lang.CharSequence)}.
+     * Test for {@link Strings#isBlank(CharSequence)}.
      */
     @Test
     public void testIsBlank() {
@@ -51,7 +54,7 @@ public class StringsTest {
     }
 
     /**
-     * Test for {@link Strings#isNotEmpty(java.lang.CharSequence)}.
+     * Test for {@link Strings#isNotEmpty(CharSequence)}.
      */
     @Test
     public void testIsNotEmpty() {
@@ -63,7 +66,19 @@ public class StringsTest {
     }
 
     /**
-     * Test for {@link Strings#isAnyEmpty(java.lang.CharSequence[])}.
+     * Test for {@link Strings#isNotBlank(CharSequence)}.
+     */
+    @Test
+    public void testIsNotBlank() {
+        assertFalse(Strings.isNotBlank(null));
+        assertFalse(Strings.isNotBlank(""));
+        assertFalse(Strings.isNotBlank(" "));
+        assertTrue(Strings.isNotBlank("str"));
+        assertTrue(Strings.isNotBlank("  str  "));
+    }
+
+    /**
+     * Test for {@link Strings#isAnyEmpty(CharSequence[])}.
      */
     @Test
     public void testIsAnyEmpty() {
@@ -80,7 +95,24 @@ public class StringsTest {
     }
 
     /**
-     * Test for {@link Strings#isNoneEmpty(java.lang.CharSequence[])}.
+     * Test for {@link Strings#isAnyBlank(CharSequence[])}.
+     */
+    @Test
+    public void testIsAnyBlank() {
+        assertTrue(Strings.isAnyBlank((String) null));
+        assertFalse(Strings.isAnyBlank((String[]) null));
+        assertTrue(Strings.isAnyBlank(null, "str"));
+        assertTrue(Strings.isAnyBlank("", "str"));
+        assertTrue(Strings.isAnyBlank("str", ""));
+        assertTrue(Strings.isAnyBlank("  str  ", null));
+        assertTrue(Strings.isAnyBlank(" ", "str"));
+        assertFalse(Strings.isAnyBlank("str1", "str2"));
+        assertFalse(Strings.isAnyBlank(new String[]{}));
+        assertTrue(Strings.isAnyBlank(new String[]{""}));
+    }
+
+    /**
+     * Test for {@link Strings#isNoneEmpty(CharSequence[])}.
      */
     @Test
     public void testIsNoneEmpty() {
@@ -97,7 +129,24 @@ public class StringsTest {
     }
 
     /**
-     * Test for {@link Strings#isAllEmpty(java.lang.CharSequence[])}.
+     * Test for {@link Strings#isNoneBlank(CharSequence[])}.
+     */
+    @Test
+    public void testIsNoneBlank() {
+        assertFalse(Strings.isNoneBlank((String) null));
+        assertTrue(Strings.isNoneBlank((String[]) null));
+        assertFalse(Strings.isNoneBlank(null, "str"));
+        assertFalse(Strings.isNoneBlank("", "str"));
+        assertFalse(Strings.isNoneBlank("str", ""));
+        assertFalse(Strings.isNoneBlank("  str  ", null));
+        assertFalse(Strings.isNoneBlank(" ", "str"));
+        assertTrue(Strings.isNoneBlank("str1", "str2"));
+        assertTrue(Strings.isNoneBlank(new String[]{}));
+        assertFalse(Strings.isNoneBlank(new String[]{""}));
+    }
+
+    /**
+     * Test for {@link Strings#isAllEmpty(CharSequence[])}.
      */
     @Test
     public void testIsAllEmpty() {
@@ -112,5 +161,66 @@ public class StringsTest {
         assertFalse(Strings.isAllEmpty("str1", "str2"));
         assertTrue(Strings.isAllEmpty(new String[]{}));
         assertTrue(Strings.isAllEmpty(new String[]{""}));
+    }
+
+    /**
+     * Test for {@link Strings#isAllBlank(CharSequence[])}.
+     */
+    @Test
+    public void testIsAllBlank() {
+        assertTrue(Strings.isAllBlank());
+        assertTrue(Strings.isAllBlank((String) null));
+        assertTrue(Strings.isAllBlank((String[]) null));
+        assertTrue(Strings.isAllBlank(null, " "));
+        assertFalse(Strings.isAllBlank(null, "str"));
+        assertFalse(Strings.isAllBlank("", "str"));
+        assertFalse(Strings.isAllBlank("str", ""));
+        assertFalse(Strings.isAllBlank("  str  ", null));
+        assertFalse(Strings.isAllBlank(" ", "str"));
+        assertFalse(Strings.isAllBlank("str1", "str2"));
+        assertTrue(Strings.isAllBlank(new String[]{}));
+        assertTrue(Strings.isAllBlank(new String[]{""}));
+    }
+
+    /**
+     * Test for {@link Strings#firstNonEmpty(CharSequence[])}.
+     */
+    @Test
+    public void testFirstNonEmpty() {
+        assertNull(Strings.firstNonEmpty());
+        assertNull(Strings.firstNonEmpty((String[]) null));
+        assertNull(Strings.firstNonEmpty(null, null, null));
+        assertEquals(" ", Strings.firstNonEmpty(null, "", " "));
+        assertEquals(" ", Strings.firstNonEmpty(null, null, " "));
+        assertEquals("abc", Strings.firstNonEmpty(null, "abc"));
+        assertEquals("abc", Strings.firstNonEmpty("abc"));
+        assertEquals("abc", Strings.firstNonEmpty(null, "abc"));
+        assertEquals("xyz", Strings.firstNonEmpty(null, "xyz", "abc"));
+    }
+
+    /**
+     * Test for {@link Strings#firstNonBlank(CharSequence[])}.
+     */
+    @Test
+    public void testFirstNonBlank() {
+        assertNull(Strings.firstNonBlank());
+        assertNull(Strings.firstNonBlank((String[]) null));
+        assertNull(Strings.firstNonBlank(null, null, null));
+        assertNull(Strings.firstNonBlank(null, "", " "));
+        assertNull(Strings.firstNonBlank(null, null, " "));
+        assertEquals("abc", Strings.firstNonBlank(null, "abc"));
+        assertEquals("abc", Strings.firstNonBlank("abc"));
+        assertEquals("abc", Strings.firstNonBlank(null, "abc"));
+        assertEquals("xyz", Strings.firstNonBlank(null, "xyz", "abc"));
+    }
+
+    /******************** Contains methods ********************/
+
+
+    /**
+     * Test for {@link Strings#contains(CharSequence, int)}.
+     */
+    @Test
+    public void testContainsChar() {
     }
 }
