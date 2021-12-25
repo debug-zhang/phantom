@@ -5,6 +5,7 @@ package com.phantom.commons.base;
 
 import org.testng.annotations.Test;
 
+import static com.phantom.commons.base.Supplementary.*;
 import static org.testng.Assert.*;
 
 /**
@@ -218,9 +219,61 @@ public class StringsTest {
 
 
     /**
-     * Test for {@link Strings#contains(CharSequence, int)}.
+     * Test for {@link Strings#contains(CharSequence, CharSequence)}.
      */
     @Test
     public void testContainsChar() {
+        assertFalse(Strings.contains(null, ' '));
+        assertFalse(Strings.contains("", ' '));
+        assertFalse(Strings.contains("", null));
+        assertFalse(Strings.contains(null, null));
+        assertTrue(Strings.contains("abc", 'a'));
+        assertTrue(Strings.contains("abc", 'b'));
+        assertTrue(Strings.contains("abc", 'c'));
+        assertFalse(Strings.contains("abc", 'z'));
+    }
+
+    /**
+     * Test for {@link Strings#contains(CharSequence, CharSequence)}.
+     */
+    @Test
+    public void testContainsString() {
+        assertFalse(Strings.contains(null, null));
+        assertFalse(Strings.contains(null, ""));
+        assertFalse(Strings.contains(null, "a"));
+        assertFalse(Strings.contains("", null));
+        assertTrue(Strings.contains("", ""));
+        assertFalse(Strings.contains("", "a"));
+        assertTrue(Strings.contains("abc", "a"));
+        assertTrue(Strings.contains("abc", "b"));
+        assertTrue(Strings.contains("abc", "c"));
+        assertTrue(Strings.contains("abc", "abc"));
+        assertFalse(Strings.contains("abc", "z"));
+    }
+
+    /**
+     * Test for {@link Strings#contains(CharSequence, CharSequence)}.
+     */
+    @Test
+    public void testContainsStringWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertFalse(Strings.contains(CharUSuppCharHigh, CharU20001));
+        assertFalse(Strings.contains(CharUSuppCharLow, CharU20001));
+        assertFalse(Strings.contains(CharU20001, CharUSuppCharHigh));
+        assertTrue(Strings.contains(CharU20001, CharUSuppCharLow));
+        assertTrue(Strings.contains(CharU20001 + CharUSuppCharLow + "a", "a"));
+        assertTrue(Strings.contains(CharU20001 + CharUSuppCharHigh + "a", "a"));
+    }
+
+
+    /**
+     * Test for {@link Strings#contains(CharSequence, CharSequence)}.
+     */
+    @Test
+    public void testContainsStringWithSupplementaryChars() {
+        assertTrue(Strings.contains(CharU20000 + CharU20001, CharU20000));
+        assertTrue(Strings.contains(CharU20000 + CharU20001, CharU20001));
+        assertTrue(Strings.contains(CharU20000, CharU20000));
+        assertFalse(Strings.contains(CharU20000, CharU20001));
     }
 }

@@ -39,11 +39,15 @@ public class Strings {
      */
     public static final int INDEX_NOT_FOUND = -1;
 
+    /**
+     * Gets a CharSequence length or {@code 0} if the CharSequence is {@code null}.
+     *
+     * @param cs a CharSequence or {@code null}
+     * @return CharSequence length or {@code 0} if the CharSequence is {@code null}.
+     */
     public static int length(final CharSequence cs) {
         return cs == null ? 0 : cs.length();
     }
-
-    /******************** Empty/Blank methods ********************/
 
     /**
      * Checks if a CharSequence is empty ("") or null.
@@ -247,8 +251,24 @@ public class Strings {
         return null;
     }
 
-    /******************** Contains methods ********************/
+    public static boolean contains(final CharSequence seq, final CharSequence searchSeq) {
+        if (seq == null || searchSeq == null) {
+            return false;
+        }
+        return CharSequences.indexOf(seq, searchSeq, 0) >= 0;
+    }
 
+    /**
+     * Checks if CharSequence contains a search character, handling {@code null}.
+     * This method uses {@link String#indexOf(int)} if possible.
+     * <p>
+     * A {@code null} or empty ("") CharSequence will return {@code false}.
+     *
+     * @param seq        the CharSequence to check, may be null
+     * @param searchChar the character to find
+     * @return true if the CharSequence contains the search character,
+     * false if not or {@code null} string input
+     */
     public static boolean contains(final CharSequence seq, final int searchChar) {
         if (isEmpty(seq)) {
             return false;

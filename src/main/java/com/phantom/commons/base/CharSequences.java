@@ -18,6 +18,27 @@ public class CharSequences {
     private static final int NOT_FOUND = -1;
 
     /**
+     * Used by the indexOf(CharSequence methods) as a green implementation of indexOf.
+     *
+     * @param cs         the {@code CharSequence} to be processed
+     * @param searchChar the {@code CharSequence} to be searched for
+     * @param start      the start index
+     * @return the index where the search sequence was found
+     */
+    static int indexOf(final CharSequence cs, final CharSequence searchChar, int start) {
+        if (cs instanceof String) {
+            return ((String) cs).indexOf(searchChar.toString(), start);
+        }
+        if (cs instanceof StringBuilder) {
+            return ((StringBuilder) cs).indexOf(searchChar.toString(), start);
+        }
+        if (cs instanceof StringBuffer) {
+            return ((StringBuffer) cs).indexOf(searchChar.toString(), start);
+        }
+        return cs.toString().indexOf(searchChar.toString(), start);
+    }
+
+    /**
      * Returns the index within {@code cs} of the first occurrence of the
      * specified character, starting the search at the specified index.
      * <p>
